@@ -1,7 +1,8 @@
-# Handwritten Digit Classification Service
+# Handwrite Number Recognition Web
 
 !!!!!!!!!!!!!! AI model not complete  !!!!!!!!!!!!!!
-This project implements a handwritten digit classification service using PyTorch. The service can classify images of handwritten digits and return the predicted digit along with the confidence level.
+
+This project integrates a Flask-based web service with PyTorch to provide handwritten digit recognition, allowing users to draw digits directly on a web page for real-time analysis.
 
 ## Requirements
 
