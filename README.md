@@ -1,4 +1,4 @@
-# Handwrite Number Recognition Web
+# Handwrite Digit Recognition Webapp
 
 !!!!!!!!!!!!!! AI model not complete  !!!!!!!!!!!!!!
 
