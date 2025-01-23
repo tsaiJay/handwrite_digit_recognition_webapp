@@ -34,7 +34,7 @@ def main():
     transform = transforms.Compose([transforms.ToTensor(),
                                     transforms.Normalize((0.5), (0.5))])
 
-    testset = torchvision.datasets.MNIST(root='./mnist', train=False, download=True, transform=transform)
+    testset = torchvision.datasets.MNIST(root='./data/mnist', train=False, download=True, transform=transform)
 
     data, label = testset[0]
     # data = transform(data)  # when data is not coming from dataset(include transform)
@@ -47,7 +47,7 @@ def main():
 
 
     ''' load model (structure include)'''
-    net = torch.load('./lenet.pt', map_location=data.device)
+    net = torch.load('./weight/lenet.pt', map_location=data.device)
 
 
     ''' inference '''

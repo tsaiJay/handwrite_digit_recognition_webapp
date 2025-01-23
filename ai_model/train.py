@@ -64,8 +64,8 @@ def main():
     transform = transforms.Compose([transforms.ToTensor(),
                                     transforms.Normalize((0.5), (0.5))])
 
-    trainset = torchvision.datasets.MNIST(root='./mnist', train=True, download=True, transform=transform)
-    testset = torchvision.datasets.MNIST(root='./mnist', train=False, download=True, transform=transform)
+    trainset = torchvision.datasets.MNIST(root='./data/mnist', train=True, download=True, transform=transform)
+    testset = torchvision.datasets.MNIST(root='./data/mnist', train=False, download=True, transform=transform)
 
 
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True)
@@ -84,7 +84,7 @@ def main():
         
         if acc > best_acc:
             best_acc = acc
-            torch.save(lenet, 'lenet.pt')
+            torch.save(lenet, 'weight/lenet.pt')
 
     print('finish!!')
 
