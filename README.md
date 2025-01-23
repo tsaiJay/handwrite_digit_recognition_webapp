@@ -50,7 +50,24 @@ This project implements a handwritten digit classification service using PyTorch
    pip install -r requirements.txt
    ```
 
-5. **Run the server:**
+5. **Train and Evaluate the Model (optional):**
+
+   If you want to train the model yourself, you can use the `train.py` script, which utilizes the MNIST dataset to train a simple CNN model. Run the following command to train the model:
+
+   ```bash
+   cd ai_model/train_from_scratch
+   python train.py
+   ```
+
+   The trained model will be saved as 'lenet.pt' in the same directory. After training, you can evaluate the model's performance using the `eval.py` script. To do this, run the following command:
+
+   ```bash
+   python eval.py
+   ```
+
+   This will output the test accuracy of the model on one of the MNIST dataset.
+
+6. **Run the server:**
 
    Start the Flask server by executing:
 
