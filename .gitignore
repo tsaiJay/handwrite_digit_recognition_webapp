@@ -25,3 +25,6 @@ Thumbs.db
 # Model weights
 *.pt
 *.pth
+
+# MNIST dataset
+mnist/
