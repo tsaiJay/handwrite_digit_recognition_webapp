@@ -1,27 +1,37 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import base64
-# from ai_model.digit_classifier import DigitClassifierService
+from PIL import Image, ImageOps
+import io
+
+from predictor import Predictor
 
 app = Flask(__name__)
 CORS(app)  # This allows cross-origin requests
 
-# Initialize the digit classifier service
-digit_classifier = DigitClassifierService()
+@app.route('/')
+def home():
+    return render_template('index.html')  # render index.html
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    try:
-        # Get the image data from the request
+    try: 
+        # Get the image data from the request, and convert to PIL image
         data = request.json
         image_data = data['image'].split(',')[1]  # Remove the "data:image/png;base64," part
+
+        # Convert base64 to PIL image
+        image_bytes = base64.b64decode(image_data)
+        PIL_image = Image.open(io.BytesIO(image_bytes))
         
-        # Convert base64 to image (you'll need this for ML processing later)
-        # image_bytes = base64.b64decode(image_data)
-        
-        # TODO: Add your ML prediction logic here
-        # For now, we'll just return a dummy response
-        prediction = "Test Response: Image Received!"
+        # Image Preprocessing
+        PIL_image = PIL_image.convert('L')
+        PIL_image = PIL_image.resize((28, 28))
+        PIL_image = ImageOps.invert(PIL_image)
+        # PIL_image.show()  # uncommand this line to show Processed Image locally
+
+        # ML prediction <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        prediction = digit_predictor.inference(PIL_image)
         
         return jsonify({
             'success': True,
@@ -34,16 +44,10 @@ def predict():
             'error': str(e)
         }), 500
 
-@app.route('/classify', methods=['POST'])
-def classify_digit():
-    if 'image' not in request.json:
-        return jsonify({'error': 'No image data provided'}), 400
-    
-    try:
-        result = digit_classifier.predict(request.json['image'])
-        return jsonify(result)
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000) 
+    # Initialize the digit classifier object
+    digit_predictor = Predictor(weight_path='./model_weight/lenet.pt')  # model takes 1x28x28 input sizse
+
+    # app.run(debug=True, port=5000) 
+    app.run(debug=False, port=5000) 

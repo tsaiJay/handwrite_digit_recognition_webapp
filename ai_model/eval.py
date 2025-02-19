@@ -28,9 +28,6 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print('use device', device)
 
-    batch_size = 16
-    epoch_size = 5
-
     transform = transforms.Compose([transforms.ToTensor(),
                                     transforms.Normalize((0.5), (0.5))])
 
