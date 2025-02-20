@@ -129,3 +129,4 @@ You are free to share and adapt this work for educational and non-commercial pur
 ## ToDO
 - [ ] add confident score
 - [ ] black painting canvas
+- [ ] use jit to trace model
