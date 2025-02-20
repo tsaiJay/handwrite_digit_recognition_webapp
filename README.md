@@ -1,8 +1,6 @@
-# Handwrite Digit Recognition Webapp
+# Handwritten Digit Recognition Webapp
 
-!!!!!!!!!!!!!! AI model not complete  !!!!!!!!!!!!!!
-
-This project integrates a Flask-based web service with PyTorch to provide handwritten digit recognition, allowing users to draw digits directly on a web page for real-time analysis.
+This project integrates a Flask-based web service with PyTorch to provide handwritten digit recognition. Users can draw digits directly on a web page for real-time analysis.
 
 ## Requirements
 
@@ -15,97 +13,119 @@ This project integrates a Flask-based web service with PyTorch to provide handwr
 
 ## Setup Instructions
 
-1. **Clone the repository:**
+### 1. Clone the repository
 
-   ```bash
-   git clone https://github.com/tsaiJay/handwrite_recognition_web.git
-   cd handwrite_recognition_web
-   ```
+```bash
+git clone https://github.com/tsaiJay/handwrite_digit_recognition_webapp.git
+cd handwrite_digit_recognition_webapp
+```
 
-2. **Set up a virtual environment:**
+### 2. Set up a virtual environment
 
-   You can use `venv` to create a virtual environment. Run the following command:
+#### Using `venv`
 
-   ```bash
-   python -m venv venv
-   ```
+You can use `venv` to create a virtual environment. Run the following command:
 
-3. **Activate the virtual environment:**
+```bash
+python -m venv venv
+```
 
-   - On Windows:
+Activate the virtual environment:
 
-     ```bash
-     venv\Scripts\activate
-     ```
+- On Windows:
 
-   - On macOS/Linux:
+  ```bash
+  venv\Scripts\activate
+  ```
 
-     ```bash
-     source venv/bin/activate
-     ```
+- On macOS/Linux:
 
-4. **Install the required packages:**
+  ```bash
+  source venv/bin/activate
+  ```
 
-   With the virtual environment activated, run:
+Install the required packages:
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+With the virtual environment activated, run:
 
-5. **Train and Evaluate the Model (optional):**
+```bash
+pip install -r requirements.txt
+```
 
-   If you want to train the model yourself, you can use the `train.py` script, which utilizes the MNIST dataset to train a simple CNN model. Run the following command to train the model:
+#### Using Anaconda
 
-   ```bash
-   cd ai_model/train_from_scratch
-   python train.py
-   ```
+If you prefer Anaconda, follow these steps:
 
-   The trained model will be saved as 'lenet.pt' in the same directory. After training, you can evaluate the model's performance using the `eval.py` script. To do this, run the following command:
+```bash
+conda create --name digit_recognition python=3.8
+conda activate digit_recognition
+pip install -r requirements.txt
+```
 
-   ```bash
-   python eval.py
-   ```
+### 3. Train and Evaluate the Model (Optional)
 
-   This will output the test accuracy of the model on one of the MNIST dataset.
+If you do not want to train the model yourself, skip this step. Otherwise, use the `train.py` script, which utilizes the MNIST dataset to train a simple CNN model.
 
-6. **Run the server:**
+```bash
+cd ai_model
+python train.py
+```
 
-   Start the Flask server by executing:
+The trained model will be saved as `lenet.pt` in the `ai_model/weight` directory. A training accuracy above 97% is considered sufficient.
 
-   ```bash
-   python server.py
-   ```
+After training, you can test the inference procedure of the model on a single MNIST dataset sample using the `eval.py` script:
 
-   The server will run on `http://127.0.0.1:5000`.
+```bash
+python eval.py
+```
+
+### 4. Run the Server
+
+Before starting the server, copy the trained model weights into the `web_server/model_weight` folder to ensure the backend predictor functions correctly.
+
+Start the Flask server by running:
+
+```bash
+python server.py
+```
+
+The server will run at `http://127.0.0.1:5000`.
 
 ## API Endpoints
 
-- **POST /classify**
+### **POST /predict**
 
-  This endpoint accepts a base64-encoded image of a handwritten digit and returns the predicted digit and confidence level.
+This endpoint accepts a base64-encoded image of a handwritten digit and returns the predicted digit along with the confidence level.
 
-  **Request Example:**
+<!-- ## Usage
 
-  ```json
-  {
-      "image": "data:image/png;base64,<base64-image-data>"
-  }
-  ```
+You can use tools like Postman or `cURL` to test the `/predict` endpoint by sending a `POST` request with the base64-encoded image data.
+ -->
 
-  **Response Example:**
+Request json format
+```json
+{
+    "image": "data:image/png;base64,<base64-image-data>"
+}
+```
+<!-- 
+Response json format
+```json
+{
+    "confidence": 0.98  <<< may be add
+    'success': True,
+    'prediction': prediction
+}
+``` -->
 
-  ```json
-  {
-      "digit": 7,
-      "confidence": 0.98
-  }
-  ```
-
-## Usage
-
-You can use tools like Postman or cURL to test the `/classify` endpoint by sending a POST request with the base64-encoded image data.
 
 ## License
 
-This project is licensed under the MIT License. 
+<!-- This project is licensed under the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License.
+ -->
+You are free to share and adapt this work for educational and non-commercial purposes, provided that proper credit is given. For commercial use, please contact the project owner.
+
+
+## ToDO
+- [ ] add confident score
+- [ ] black painting canvas
