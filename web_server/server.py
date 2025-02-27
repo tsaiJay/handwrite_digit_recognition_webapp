@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import base64
-from PIL import Image, ImageOps
+from PIL import Image
 import io
 
 from predictor import Predictor
@@ -27,7 +27,6 @@ def predict():
         # Image Preprocessing
         PIL_image = PIL_image.convert('L')
         PIL_image = PIL_image.resize((28, 28))
-        PIL_image = ImageOps.invert(PIL_image)
         # PIL_image.show()  # uncommand this line to show Processed Image locally
 
         # ML prediction <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

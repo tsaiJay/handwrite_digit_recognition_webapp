@@ -11,7 +11,7 @@ let lastX = 0;
 let lastY = 0;
 
 // Set initial canvas background to white
-ctx.fillStyle = 'white';
+ctx.fillStyle = 'black';
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 // Drawing functions
@@ -46,7 +46,7 @@ canvas.addEventListener('mouseout', stopDrawing);
 
 // Clear canvas
 clearBtn.addEventListener('click', () => {
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 });
 

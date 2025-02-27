@@ -64,10 +64,10 @@ pip install -r requirements.txt
 
 ### 3. Train and Evaluate the Model (Optional)
 
-If you do not want to train the model yourself, skip this step. Otherwise, use the `train.py` script, which utilizes the MNIST dataset to train a simple CNN model.
+If you do not want to train the model yourself, skip this step. Otherwise, use the `train_ai_model/train.py` script, which utilizes the MNIST dataset to train a simple CNN model.
 
 ```bash
-cd ai_model
+cd train_ai_model
 python train.py
 ```
 
@@ -128,5 +128,4 @@ You are free to share and adapt this work for educational and non-commercial pur
 
 ## ToDO
 - [ ] add confident score
-- [ ] black painting canvas
 - [ ] use jit to trace model
