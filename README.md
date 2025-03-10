@@ -1,8 +1,8 @@
 # Handwritten Digit Recognition Webapp
 
-This project integrates a Flask-based web service with PyTorch to provide handwritten digit recognition. Users can draw digits directly on a web page for real-time analysis.
+This project integrates a Flask-based web service with PyTorch to provide handwritten digit recognition. Users can draw digits directly on a web page for real-time analysis. This is a practical application suitable for an introductory CNN course.
 	
-![ui_demo](img/demo1.png)
+![ui_demo](img/demo.gif)
 
 
 ## Requirements
@@ -67,7 +67,7 @@ pip install -r requirements.txt
 
 ### 3. Train and Evaluate the Model (Optional)
 
-If you do not want to train the model yourself, skip this step. Otherwise, use the `train_ai_model/train.py` script, which utilizes the MNIST dataset to train a simple CNN model.
+If you do not want to train the model yourself, use the ![pretrain-weight](https://drive.google.com/drive/folders/1V-QJIXbIHfk8m4YILfq3iKfI3MTUhylP?usp=sharing) and skip this step. Otherwise, use the `train_ai_model/train.py` script, which utilizes the MNIST dataset to train a simple CNN model.
 
 ```bash
 cd train_ai_model
@@ -84,7 +84,7 @@ python eval.py
 
 ### 4. Run the Server
 
-Before starting the server, copy the trained model weights into the `web_server/model_weight` folder to ensure the backend predictor functions correctly.
+Before starting the server, copy the trained model weights (or ![pretrained-weight](https://drive.google.com/drive/folders/1V-QJIXbIHfk8m4YILfq3iKfI3MTUhylP?usp=sharing))into the `web_server/model_weight` folder to ensure the backend predictor functions correctly.
 
 Start the Flask server by running:
 
