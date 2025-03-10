@@ -1,6 +1,9 @@
 # Handwritten Digit Recognition Webapp
 
 This project integrates a Flask-based web service with PyTorch to provide handwritten digit recognition. Users can draw digits directly on a web page for real-time analysis.
+	
+![ui_demo](img/demo1.png)
+
 
 ## Requirements
 
